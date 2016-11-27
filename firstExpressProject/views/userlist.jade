@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1 user list
+    p
+        a(href="/users/new") Create new users
+    ul
+        -for(var username in users){
+        li
+            a(href="/users/detail/"+encodeURIComponent(username))=users[username].name
+            br
+            a(href="/users/delete/"+encodeURIComponent(username)) "delete user"
+            br
+            a(href="/users/update/"+encodeURIComponent(username)) "update user"
+        -};

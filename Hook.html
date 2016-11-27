@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>钩子程序测试</title>
+    <script>
+    var hooks=(function(){
+        return {
+            timer:null,
+            init:function(){
+                this.callHooks('init');
+            },
+            callHooks:function(init){
+                var s='hook_'+init+'_event';
+                f=[];
+                for(var h in window)
+                {
+                    if(h.indexOf(s)!=0) continue;
+                    f.push(h);
+                }
+                this.hooksTimeout(f);
+            },
+            hooksTimeout:function(hooks){
+                if(hooks.length==0){
+                    if(this.timer)
+                        cleanTimeOut(this.timer);
+                    return;
+                }
+                var h=hooks.shift();
+                window[h].apply();
+                window[h]=undefined;
+                window.setTimeout(this.hooksTimeout(hooks),200);
+            }
+        }
+    })();
+
+    var hook_init_event_tp1_html=function(){
+        document.getElementById('hook01').innerHTML='<h1>测试钩子程序</h1>';
+    }
+    var hook_init_event_console=function(){
+        console.log('test 123');
+    }
+
+    window.onload=function(){
+        hooks.init();
+    }
+    </script>
+</head>
+<body>
+   <div id="hook01"></div>
+</body>
+</html>

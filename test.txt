@@ -1,0 +1,2 @@
+this is buffer object!
+this is string txt

@@ -1,0 +1,19 @@
+extends layout
+block content
+	h1 update User
+
+	form(method="POST" action="/users/updateUser")
+		P 
+			label(for="name") Name
+			input#hidname(name="hidname",type="hidden",value=user.name)
+			input#name(name="name",value=user.name)
+		P 
+			label(for="password") Password
+
+			input#name(name="password",value=user.password)
+		P 
+			label(for="profession") Profession
+
+			input#name(name="profession",value=user.profession)
+		P
+			input(type="submit", value="update")
