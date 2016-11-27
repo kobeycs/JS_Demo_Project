@@ -14,3 +14,4 @@ var apptest=module.exports=exports={"name":"ye cun song",
 apptest.fn01=function(){
     console.log("test");
 }
+
