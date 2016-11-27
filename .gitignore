@@ -1,1 +1,4 @@
 firstExpressProject/node_modules
+.vscode
+*.zip
+typings
