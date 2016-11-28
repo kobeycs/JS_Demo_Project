@@ -1,4 +1,5 @@
 import 'core-js/shim'
+import 'babel-polyfill'
 
 export default class person{
     constructor(name){

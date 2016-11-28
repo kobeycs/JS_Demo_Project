@@ -1,3 +1,8 @@
+'use strict';
+
+require('core-js/shim');
+
+require('babel-polyfill');
 
 function loadImageAsync(url) {
     return new Promise(function (resolve, reject) {

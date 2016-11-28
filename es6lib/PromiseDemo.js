@@ -1,3 +1,5 @@
+import 'core-js/shim'
+import 'babel-polyfill'
 
 function loadImageAsync(url){
     return new Promise(function(resolve,reject){
