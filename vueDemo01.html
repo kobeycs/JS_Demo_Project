@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue demo</title>
+</head>
+<body>
+    <div id="app">
+        <div v-if="eif">
+      <span v-bind:title="title"> {{message}} </span>
+      </div> 
+      <div v-else="eif">
+          <h1>this is h1;</h1>
+      </div>
+      <ul v-for="item in listData">
+          <li>{{item}}</li>
+      </ul>
+      <input type="text" v-model:value="title" />
+      <input type="button" v-on:click="clickA" v-bind:value="title"/>
+      <my-component v-bind:todo="title" propsA="ddddd" propC='1234'>
+          
+          <p slot="header">this named slot header elment!</p>
+        <h1>this is slot element!</h1>
+        <p slot="footer">this named slot footer element!</p>
+          </my-component> 
+    <my-component-local01></my-component-local01>
+    </div>
+
+    <div id="app2">
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+    </div>
+    <script type="text/javascript" src="vue.js"></script>
+   <script type="text/javascript">
+   Vue.component('my-component',{
+        props:{
+               todo:String,
+               propsA:Number,
+               propB:{
+                   type:Number,
+                   default:100
+               },
+               propC:{
+                   validator:function(val){
+                       return val>100
+                   }
+               }
+              },
+        //组件data必须是function
+        data:function(){
+            return {name:"叶存松",sex:"男",count:1}
+        },
+        template:"<div><h2>{{propC}}  {{propB}} this is my component! {{todo}} {{name}}</h2><button v-on:click='count +=1'>{{count}}</button><slot name='header'></slot><slot></slot><slot name='footer'></slot></div>"
+    })
+
+    var localchird2component={
+      template:"<h1>this is local chird components!</h1>"
+  }
+  var  localchirdcomponent=Vue.extend({
+      template:'<div><h1>this is local component</h1><localchird2component></localchird2component></div>',
+      components:{
+          "localchird2component":localchird2component
+      }
+ });
+  
+   var app=new Vue({
+        el:'#app',
+        data:{
+            message:'hello word!',
+            title:'this is title!',
+            eif:false,
+            listData:[1,2,3,4,5]
+        },
+        components:{
+                'my-component-local01':localchirdcomponent
+            },
+        methods:{
+            clickA:function(){
+                alert(this.message);
+                this.eif=!this.eif;
+            }
+        }
+    });
+
+
+    Vue.component('button-counter',{
+        template:'<button v-on:click="increment">{{counter}}</button>',
+        data:function(){
+            return {counter:0}
+        },
+        methods:{
+            increment:function(){
+                this.counter+=1;
+                this.$emit('increment');
+            }
+        }
+    })
+
+    var app2=new Vue({
+        el:'#app2',
+        data:{
+            total:0
+        },
+        methods:{
+            incrementTotal:function(){
+                this.total+=1;
+            }
+        }
+    })
+
+    
+   </script>
+   
+</body>
+</html>
