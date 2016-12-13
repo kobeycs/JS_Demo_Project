@@ -3,6 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>test</title>
+    <script src="jquery-latest.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var jq=$;
+        var div=jq("#test");
+        var browser=navigator.appName 
+        var b_version=navigator.appVersion 
+        var version=b_version.split(";"); 
+        var trim_Version=version[1].replace(/[ ]/g,""); 
+        if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE6.0") 
+        { 
+        alert("IE 6.0"); 
+        } 
+        else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE7.0") 
+        { 
+        alert("IE 7.0"); 
+        } 
+        else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE8.0") 
+        { 
+        alert("IE 8.0"); 
+        } 
+        else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE9.0") 
+        { 
+        alert("IE 9.0"); 
+        } 
+    </script>
 </head>
 <body>
     <ul class="genric-list">
@@ -13,6 +39,24 @@
     </ul>
     <div class="test"></div>
     <div id="test">
-        
+      <!––[if IE]>
+       <h1>您正在使用IE浏览器</h1>
+       <!––[if IE 5]>
+           <h2>版本 5</h2>
+       <![endif]––>
+       <!––[if IE 5.0]>
+           <h2>版本 5.0</h2>
+       <![endif]––>
+       <!––[if IE 5.5]>
+           <h2>版本 5.5</h2>
+       <![endif]––>
+       <!––[if IE 6]>
+           <h2>版本 6</h2>
+       <![endif]––>
+       <!––[if IE 7]>
+           <h2>版本 7</h2>
+       <![endif]––>
+<![endif]––>
+
     </div>
 </html>
